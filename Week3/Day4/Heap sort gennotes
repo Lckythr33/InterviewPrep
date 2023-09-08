@@ -1,0 +1,36 @@
+Heap Sort
+(Binary Tree): returns min or max
+
+Used for:
+-Memory management
+-Dijkstra
+-Priority queue
+-Sort - k->largest
+-Rolling max, rolling min (keeps changing)
+
+There is a mathamatical formula between parent and children in the Tree
+
+There cannot be holes in the Tree
+
+Max Heap:
+To remove max swap with last leaf
+Swap with last possible leaf, which is last in array
+
+Complexity o(logn)
+
+Example: Load Balancer
+
+                4            <--- 8,5,11         [4,10,17,15,12,20,19]
+        /               \
+        10              17
+    /      \        /       \
+    15      12      20      19
+
+                23            <---       [4,10,17,15,12,20,19]
+        /               \
+        12              17
+    /      \        /       \
+    15      15      20      19                
+
+
+

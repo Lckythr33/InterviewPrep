@@ -1,0 +1,60 @@
+#Input: 2
+#Output: ["00", "01", "10"]
+
+#Input: 3
+#Output: ["000", "001", "010", "100", "101"]
+
+#Time & space: O(2^n)
+
+# Understand 
+
+
+
+# # Diagram 
+#                      ""
+#         /                            \
+#       "0"                            "1"
+#     /    \                         /    \ 
+#   00      01                       10    11 #base case
+# /   \     / \                     /       \
+# 000 001  010 011 '''base case''' 100     101
+#                                  /  \      /  \
+#                               1000  1001  1010  1011 #base
+                         
+#Pseudocode      
+
+# if depth = input
+#   res.append(build)
+#   return results
+
+# if build[len(build)-1]  = "1"    
+#   return 0
+
+#   #left
+#   Nonconsecutiveones(build + 0)
+#   #right
+#   Nonconsecutiveones(build + 1)
+
+
+#Code 
+
+def Nonconsecutiveones(n):
+  res = []
+
+  def findout(build):
+    if len(build) == n:
+      res.append(build)
+      return res
+    # if len(build) == 0:
+    #   return res
+      
+    findout(build+0)
+    if build[len(build) - 1]  != '1' : 
+      findout(build+1)
+ 
+  findout("")
+  return res
+
+
+print(Nonconsecutiveones(3))
+

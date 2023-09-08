@@ -1,0 +1,175 @@
+Object Oriented Design
+
+Encapsulation:
+-Bind data together and hide from outside world
+-Acheived through private state
+-State can only be accessed through pubic functions
+
+Abtraction:
+-An extension of Encapsulation achieved through hiding unnecessary info from user 
+-Reduces complexity of system
+-Hides internal implementation details only exposing relevant operations
+
+Example of abstraction
+Uber:
+-Google Maps - dont need to know how it works under the hood but still vital to our app
+-List of drivers - dont need to know how it returns just that it works
+-List of riders
+
+Inheritance:
+-creating new classes from existing ones
+-reuse common logic while also implementing unique logic
+
+Polymorphism:
+-ability of an object to take on many forms using an interface
+
+-static: 
+achieved through overloading
+
+Composition:
+-Introduced the "has-a" relationship by combining objects of other types within a calss
+-Create an object of class A inside of class B
+
+--------------------------------------------------------------------------------------
+
+OOD Interview Steps (45 mins):
+
+1. Use cases (brainstorming, mvp): [ask about scale, establish OOD]
+- 5-10 mins
+2. Define Relationships between objects (class diagram)
+- 25-35 mins
+3. Reflection (different path + future steps)
+- 5-10 mins
+
+What would I have done differently 
+Which use cases should I tackle next
+Are we just creating the model or are we concerned about scale
+    |
+    |
+    |
+    \/
+System Design:
+3) Estimations, constraints, bottlenecks
+4) Scale up system; diagrams
+
+YOU NEED TO DRIVE THE CONVERSATION, DONT ASK THE INTERVIEWER WHAT TO DO NEXT, 
+FIGURE IT OUT YOURSELF WEIGHING THE PROS AND CONS OR JUSTIFYING DECISIONS
+
+-----------------------------------------------------------------------------------------
+
+Design Amazon:
+
+Ask which part of amazon, find MVP 
+
+Ecommerce experience up to check out
+What will we need:
+
+Actors:
+Account:
+Members,
+Guests,
+
+Classes:
+Products,
+Cart functionality,
+Orders,
+Search,
+Payment,
+Address,
+
+-------------------------------------------------------------------------------------------
+
+Class Diagram
+
+-----------
+
+Account:      -------------------------------------Guest:  ------------------------------------------Member:
+
+Properties:                                        Inherit                                             
+-account_id:string                                 -ipAddress:string or (sessionCookie:string)          
+-email:string
+-password: salted and hashed string
+-name: string
+
+Methods:                                           Inherit                                             
+-Signup()                                          -get_IP()                                           
+-getAccount()                                      -createGuest()
+-editAccount()                                     -editGuest()
+-deleteAccount()                                   -deleteGuest()
+
+-----------
+
+Product:
+
+Properties:
+-product_id: string
+-name: string
+-price: float
+-quantity: int
+-description: string
+-imgUrl: string
+
+Methods:              (say getters/setters or CRUD
+                        to save time in interview)                                                          
+-createProduct()                    |
+-getProduct()                       |
+-editProduct()                      |
+-deleteProduct()                    |
+
+-----------
+
+Address: 1 to many | relationship between Address and Payment
+
+Properties:
+recipient:string
+address_id:string
+line1:string
+line2:string
+zip:int
+city:string
+state:string
+
+Methods:
+CRUD OPERATIONS
+
+-----------
+
+Payment: relationship with Address
+
+Properties:
+paymentID:string
+cardnum:string
+expirationdate:string
+cvv:int
+name:string
+
+Methods:
+CRUD OPERATIONS
+
+-----------
+
+Relationships: many to one with address and payment 
+
+Order/(cart until payed):                               Item: | Relationships: Relationship to Product: One to Many  | Relationship to Order: Many to many 
+order_id:string                                         item_id:string
+products:list of items                                  product:Product
+                                                        count:int
+status:string(enum:Cart,Order)
+timestamp:DateTime
+totalPrice:float
+
+Methods:
+createOrder()
+getOrder()
+emptyCart()
+addToCart()
+removeFromCart()
+updateQuantity()
+checkout()
+
+
+Relationships:
+    Account : Order :: 1:N
+    Order : Item :: N:M
+    Order : Address :: N:1
+    Order : Payment :: N:1

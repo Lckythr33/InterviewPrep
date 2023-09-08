@@ -1,0 +1,50 @@
+# Given a string str of lowercase alphabetical characters, return the set of all permutations of those characters in upper AND lowercase.
+
+# Advanced
+# Solve the same problem, except now you may have number characters in your string (which don't have a lowercase or uppercase, but should still be included in your result) and capital letters, that need to be lowercased.
+
+# Input: "abc"
+# Output: ["ABC", "ABc", "AbC", "aBC", "Abc", "aBc", "abC", "abc"]
+
+# Input: "a"
+# Output: ["A" ,"a"]
+
+# Advanced:
+
+# Input: "A1d3"
+# Output: ["A1D3", "a1D3", "A1d3", "a1d3"]
+
+#
+#                           'a'
+#                /                          \
+#                a                           A
+#                           'abc'
+#                /                          \
+#             'abc'                        'Abc'                             
+#         /            \               /          \
+#   'abc'              'aBc'          'Abc'        'ABc'
+#    /  \              /  \          /    \        /    \
+# 'abc'  'abC'      'aBc'  'aBC'   'Abc'  'AbC'  'ABc'  'ABC'
+
+def capPerm(string):
+  result = []
+
+  def recurs(build, depth):
+    if len(string) == depth:
+      #need push to res**
+      result.append(build)
+      return
+
+    #left
+    recurs(build + string[depth], depth + 1)
+
+    #permute(substr + str[depth], depth + 1);
+
+    #right
+    recurs(build +string[depth].upper(), depth + 1)
+
+  recurs("",0)
+
+  return result
+
+print(capPerm('abc')) #stores all permutations capital and lowercase

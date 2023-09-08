@@ -1,0 +1,32 @@
+Make at least 3 coaching sessions
+
+Program Reqs:
+*Attend class
+*Week 5 + continued learning 1 session a week
+*Week 2 submit 25 interview attempts
+*Weekly reflection form 
+
+What counts as an interview attempt:
+*Applying to a company job board
+*Applying on 3rd party website
+*Submit Resume for employee referral
+*Outreach Messages
+*Networking Event
+
+When things get tough:
+*Meet with Coaches
+*Actively participate during lectures and small group activities
+*Attend daily tech office hours & friday tech level up
+*Attend Resume workshop
+*Reach out to classmates in the slack homework channel
+
+/*//*/*/*/*/**/*/*/*/*/*/*/*//*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*
+
+Standardized process that they gage
+
+your communication style
+your process for problem solving
+
+Decide if your algorithm works or not without coding using diagraming
+
+

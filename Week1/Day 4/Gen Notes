@@ -1,0 +1,9 @@
+Intro to dynamic programming
+Tight relationship to recursion
+
+DP tools
+Recursive tree
+binary decision
+cache (memoization - dont compute again if weve seen before)
+convert to table ( tabulation )
+

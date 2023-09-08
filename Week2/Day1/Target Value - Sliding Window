@@ -1,0 +1,78 @@
+# Given an array of positive integers and a target value, return true if there is a subarray of consecutive elements that sum up to this target value.
+
+# Input: Array of integers, target value
+# Output: Boolean
+# Example
+# Input: [6,12,1,7,5,2,3], 14      	=>	Output: true (7+5+2)
+# Input: [8,3,7,9,10,1,13], 50		=>	Output: false
+
+
+# Constraints
+# Time Complexity: O(N)
+# Auxiliary Space Complexity: O(1)
+
+# All elements are positive
+
+# for i 
+#  for j            14
+#         i   j
+# [6,12,1,7,5,2,3]
+
+# 14 = 14
+# or > 14
+
+# true
+
+
+# start=0;
+
+# for i
+#         s   i        
+# [6,12,1,7,5,2,3]
+#    sum = 14
+
+# output = true
+
+
+#                 s i
+#  [8,3,7,9,10,1,13]
+
+# i > arr
+
+# output false
+
+# Pseudocode
+
+#   s  i           
+# [8,3,7,9,10,1,13]
+
+
+#             i
+# [0,0,0,15,3]
+#           l
+#           l
+
+#            s              
+# [a,d,o,b,e,c,a,b,e,a,b,c]
+#                i
+
+# a=0,b=0,c=0
+
+# best=n(s=0,i=5)
+
+
+def sliding_window(arr,target):
+  sum = 0
+  start = 0
+  i = 0
+  for i in arr:
+    sum += i
+    while (sum > target and start<i-1):
+      start = start + 1
+      sum = sum - arr[start]
+      
+    if sum == target:
+      return True;
+  return False;
+
+print(sliding_window([6,12,1,7,5,2,3],14))

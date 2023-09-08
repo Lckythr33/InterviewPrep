@@ -1,0 +1,112 @@
+/*
+ * 2g. Merge two sorted arrays
+ *
+ * Input:   arr1 {Array}
+ * Input:   arr2 {Array}
+ * Output:  Array
+ *
+ * Example: merge([1, 4, 7], [2, 3, 6, 9]) => [1, 2, 3, 4, 6, 7, 9]
+
+Helper Method Recursion: 
+
+1) Create state variable(s) 
+2) Return state variable(s)
+3) Instantiate and invoke helper method 
+4) Base Case(s) 
+5) Recursive Case(s) 
+
+            i 
+test1 = [1, 4, 7]
+
+               j
+test2 = [2, 3, 6, 9]
+
+
+result = [1,2,3]
+
+
+
+                              i,j
+                              0,0
+                               |
+                              1,0
+                               |
+                              1,1
+                               |
+                              1,2
+
+            
+
+
+
+- upon comparison, whichever is the smaller of the two elements
+  - push to result 
+  - increment the index of pushed element 
+
+- stop performing comparisons when index is >= length of its array 
+
+
+
+*/
+
+const pureMerge = (arr1, arr2) => {
+  if (arr1.length === 0) {
+    return arr2;
+  }
+  if (arr2.length === 0) {
+    return arr1;
+  }
+
+  let result = [];
+  
+  if (arr1[0] < arr2[0]) {
+    result.push(arr1.shift());
+    result = result.concat(pureMerge(arr1, arr2));
+  } else {
+    result.push(arr2.shift());
+    result = result.concat(pureMerge(arr1, arr2));
+  }
+
+  return result;
+}
+
+
+
+const merge = (arr1, arr2) => {
+  let result = [];
+  
+  const combine = (i, j) => {
+    if (i >= arr1.length) {
+      result = result.concat(arr2.slice(j));
+      return;
+    }
+    if (j >= arr2.length) {
+      result = result.concat(arr1.slice(i));
+      return;
+    }
+
+    if (arr1[i] < arr2[j]) {
+      result.push(arr1[i]);
+      combine(i + 1, j);
+    } else {
+      result.push(arr2[j]);
+      combine(i, j + 1);
+    }
+  }
+  
+  combine(0, 0);
+
+  return result;
+}
+
+
+
+
+
+let test1 = [1,4,7];
+let test2 = [2,3,6,9];
+
+
+// console.log(merge(test1, test2));
+console.log(pureMerge(test1, test2));
+

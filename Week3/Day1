@@ -1,0 +1,133 @@
+Matricies
+
+Graph Traversals:
+Depth First Search
+Breadth First Search
+
+Dimensional Array:
+matrix
+
+Source (0,0)
+0   0   0   
+
+0   0   0
+
+0   0   0  
+Dest. (Max Row , Max Column)
+
+Pseudocode:
+
+result = []
+visited = set()
+dirs = [up,down,right,left]
+dfsBacktrack(row, col)
+
+Base Case:
+dest reached?
+    result++ , remove from visited
+out of bounds
+    return
+visited?
+
+Add (row,col) to visited  
+loop through directions
+    dfsBacktrack(edge)
+
+Backtrack: remove from visited, remove from path
+
+
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+
+
+#
+# Complete the 'robotPaths' function below.
+#
+# The function is expected to return an INTEGER.
+# The function accepts 2D_INTEGER_ARRAY matrix as parameter.
+#
+# Pseudocode:
+
+# result = []
+# visited = {}
+# dirs = [up,down,right,left]
+# dfsBacktrack(row, col)
+
+# Base Case:
+# dest reached?
+#     result++ , remove from visited
+# out of bounds
+#     return
+# visited?
+
+# Add (row,col) to visited  
+# loop through directions
+#     dfsBacktrack(edge)
+
+# Backtrack: remove from visited, remove from path
+
+def robotPaths(matrix):
+# result = []
+    result=0
+# visited = {}
+    visited = set()
+# dirs = [up,down,right,left]
+    dirs = [[1,0],[0,-1],[0,1],[-1,0],]
+    strCoord = '${row}_${col}'
+    maxRow = len(matrix)-1
+    maxCol = len(matrix[0])-1
+    def dfsBacktrack(row, col):
+# Base Case:
+        # dest reached?
+        if row == len(matrix)-1 and col == len(matrix[0])-1:
+#           result++ , remove from visited
+            result += 1
+            return
+        # out of bounds
+        if row > maxRow or col > maxCol or row < 0 or col < 0:
+            return
+        # visited?
+        if strCoord in visited:
+            return
+        
+        visited.add(strCoord)
+        
+        for dir in dirs:
+            dfsBacktrack(row + dir[0], col + dir[1])
+            
+            
+        visited.remove(strCoord)
+# Add (row,col) to visited  
+# loop through directions
+
+#     dfsBacktrack(edge)
+    
+    dfsBacktrack(0,0)
+    
+# Backtrack: remove from visited, remove from path
+    
+
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    matrix_rows = int(input().strip())
+    matrix_columns = int(input().strip())
+
+    matrix = []
+
+    for _ in range(matrix_rows):
+        matrix.append(list(map(int, input().rstrip().split())))
+
+    result = robotPaths(matrix)
+
+    fptr.write(str(result) + '\n')
+
+    fptr.close()
+

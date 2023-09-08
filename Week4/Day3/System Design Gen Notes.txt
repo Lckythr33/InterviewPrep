@@ -1,0 +1,128 @@
+System Design Steps
+
+1) Use Cases 
+    Brainstorm: MVP
+    Narrow it down
+
+2) Define Relationships (25-30 mins)
+    class diagrams / ERD
+
+3) Estimations, constraints, bottlenecks (10m)
+    # users
+    amouint of data
+    requests per second
+
+4) Scale up the system + diagrams   
+    client 
+    application     
+    database
+
+
+    USE ONKEY FLASHCARDS TO STUDY
+    
+    Have a consistent system that you apply to study and cover all the bases
+
+Design an ad server for Pandora
+
+1) Use Cases:
+    Allow advertisers to buy ad space
+    Genre based ads 
+    Serve ads / display ads 
+    Media types
+        Audio
+        Display 
+        Video
+    Targeted Ads 
+        Genre
+        Age/Gender
+        Geographic 
+        Behavioral Segments
+        Segments
+
+*************   see use cases.png for the rest   ***************
+
+
+    ************DETERMINE MVP , look at MVP.PNG************
+
+2) Entity Relationship diagram (ERD)
+
+    advertiser
+        id
+        name
+    getAdvertiser()
+    
+    ad
+        id
+        name
+        media_url
+        start_date
+        end_date
+
+*************  See ERD.PNG For the rest  ***************
+
+3) Constraints, estimations, bottlenecks  
+
+    Load|
+        Requests per second
+        *80M monthly active users
+            -> 1/4 are daily active users: 20 million daily
+        *Assume each user listens 1 hour per day
+            *Say 10 mins of ads in an hour
+                -> 0:30 second ads means 20 ads in an hour
+        
+        20 ads per user per day
+
+        20M * 20ads = 400M ads per day
+                ->4628 ads per second
+
+    Data|
+        How much space do we need to store:
+        users : 100M users in DB
+                Each row is 10kb data = 1TB 
+        ads : 100,000 * 20kb = 2GB
+        impressions : 100M users * 10,000 = 1000TB = 1PB 
+    
+    Constraints Cont'd 
+
+        RPS = (RAM/ TaskMemoryUsage) * (1/TaskDuration)
+              # of parallel threads 
+            = (8GB/40MB) * (1/0.5s)
+            = 400 Requests per second
+            1 8gb machine can handle 400 requests per second
+            we need to handle ->4628 ads per second
+            so we need roundup(4628/400) = 12 
+            so we need 12 machines to handle these requests
+
+    Virality: (decide if we want to perform caching)
+        How uniform or concentrated are requests
+        If the media is popular it is cached, if not it takes longer to Load
+        
+        Data is viral in this case, so we do want to use caching
+
+************** Look at ScaleDiagram.png for " the fun part " *****************
+
+Aside: Consistent Hashing
+
+id                          h3n946cg1
+key ---> hash function ---> Value % name
+
+            A 0
+            B 1             
+            C 2
+        Randomly hash to 3 different buckets
+
+Lets say you added one 
+            A 0
+            B 1             
+            C 2
+            D 3
+            Now you have to mod by 4 and rehash every single element
+
+Consistent hasing - rather than hasing to a particular index, we hash to a location on a circle
+
+now mod with value % 360
+*************** Look at consistenthashing.png ********************
+
+*************** Look at AddDlessrehashes.png ********************
+
+

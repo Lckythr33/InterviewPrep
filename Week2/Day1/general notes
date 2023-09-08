@@ -1,0 +1,28 @@
+Sliding Windows
+
+Recognition:
+Working with a linear data set
+are we trying to maximize or minimize a substring 
+Can you think of a quadratic solution or is there overlapping or unnecessary work 
+
+Tools:
+Try quadratic approach first
+    - what data structures or state variables are used
+
+ Next try two pointer approach w/ left and right pointers beginning at index 0
+    - How can we make use of the data structures from the quadratic approach 
+     - hunting phase (expand)
+     - catchup phase (contract)
+
+Problem Min Window substring
+
+0 1 2 3 4 5 6 7 8 9 10 11 12
+A D O B E C O D E B  A  N  C       , abc | find smallest group of letters that contain ABC
+
+BANC is our answer here.
+
+for i
+    for char in t:
+        check if char in current substring
+
+

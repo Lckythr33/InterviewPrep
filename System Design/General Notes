@@ -1,0 +1,25 @@
+MySQL
+    Replication
+    Sharding
+
+Data Layer
+
+    Traditionally, vertically scaled
+    Changed due to 
+        content flexibility increased
+        rise of the internet
+        Social Networks
+        Globalization of software
+
+    Options:
+    -Relational Databases
+    -Non-relational Databases
+    
+MySQL
+    Can be scaled
+    Used by Facebook, Tumblr, Pinterest
+
+Refer to replication screenshot:
+
+
+

@@ -1,0 +1,97 @@
+Input: [
+        [1,2,3],			
+        [4,5,6],
+        [7,8,9]
+       ]
+
+
+Output: [1, 2, 3, 6, 9, 8, 7, 4, 5]
+# time and space O(mn)
+
+Diagram:
+          traverse right until maxRow writing to result array
+            col
+  row      [[1,2,3],			traverse down until maxCol
+            [4,5,6],      traverse left until boundary
+            [7,8,9]]      traverse up until boundary or visited
+                      traverse right until visted
+return array
+
+Pseudocode:
+
+spiralMatrix
+result = []
+visited = set()
+
+while row != maxRow len(matrix[0])-1 
+   col += 1  traverse right
+    append row,col to results
+add to visited
+while col != maxCol len(matrix)-1
+  row += 1 traverse down
+append row,col to results
+add to visited
+while row != -1
+   col -= 1
+append row,col to results
+add to visited
+while col != -1 or visited
+  row -= 1;
+append row,col to results
+add to visited
+while row != maxRow or visited
+  col += 1;
+append row,col to results
+add to visited
+
+return results
+
+
+Input: 
+
+      [ column
+ row    [1,2,3],		1	      
+        [4,5,6],    2
+        [7,8,9]     3
+       ]
+
+[0,0] | [0,1] | [0,2]
+       
+[1,0]  |  [1,1] | [1,2] 
+       
+[2,0] | [2,1] | [2,2]
+
+function MatrixSpiral(matrix) {
+    if(!matrix.length) {return []; }
+    var yMin = 0;
+    var xMin = 0;
+    var yMax = matrix.length - 1;
+    var xMax = matrix[0].length - 1;
+    var results = [];
+
+    while (xMin <= xMax && yMin <= yMax) {
+        for(var i = xMin; i <= xMax; i++){
+            results.push(matrix[yMin][i]);
+        }
+        yMin++;
+        for(i = yMin; i <= yMax; i++){
+            results.push(matrix[i][xMax]);
+        }
+        xMax--;
+        if(yMin <= yMax){
+            for(i = xMax; i >= xMin; i--){
+                results.push(matrix[yMax][i]);
+            }
+            yMax--;
+        }
+        if(xMin <= xMax){
+            for(i = yMax; i >= yMin; i--){
+                results.push(matrix[i][xMin]);
+            }
+            xMin++;
+        }
+    }
+    return results;
+};
+
+https://leetcode.com/problems/spiral-matrix/

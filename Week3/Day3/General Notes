@@ -1,0 +1,51 @@
+Quick Sort -- Data Acrobatics
+
+2 possible times
+
+if i < p 
+i swaps with wall
+i++
+wall++
+
+once i reaches pivot swap pivot and wall
+
+*call(left,wall-1)
+*call(right,wall+1)
+
+
+Pseudocode:
+
+Declare:
+L 
+R
+p
+w
+i
+
+Base Cases:
+if L > R: 
+    return
+
+if len(arr) <= 1: 
+    return
+
+1) Call recursive func from L to R
+    -> Set pivot to last element
+2)  Iterate through non-pivot elements
+
+i > p 
+i++
+
+i < p 
+i swap with w
+i++ , w++
+
+3) When i reaches p
+swap p and w
+
+4) Recursive calls
+*call(left,wall-1)
+*call(right,wall+1)
+
+
+Attendance code: quickSort31622

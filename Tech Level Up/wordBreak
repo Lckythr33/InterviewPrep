@@ -1,0 +1,19 @@
+class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        # initialize the cache
+      dp = [False] * (len(s) + 1)
+      # set the last element of the cache to be true
+      dp[len(s)] = True
+
+      for i in range(len(s) - 1, -1, -1):
+        for w in wordDict:
+      #     check if i + len(w) <= len(s) and s[i : i + len(w)] == w ?
+          if (i + len(w)) <= len(s) and s[i : i + len(w)] == w:
+      #       update cache to be dp[i] = dp[i + len(w)]
+            dp[i] = dp[i + len(w)]
+      #     check if dp[i]
+          if dp[i]:
+      #       break out of the words loop
+            break
+
+      return dp[0]
